@@ -1,8 +1,4 @@
 
-CREATE DATABASE aircraft;
-
-USE aircraft;
-
 CREATE TABLE airport (
     icao CHAR(4) PRIMARY KEY,
     airport_name VARCHAR(100) NOT NULL,
