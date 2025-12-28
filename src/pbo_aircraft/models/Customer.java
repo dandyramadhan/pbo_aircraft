@@ -18,4 +18,8 @@ public class Customer {
     public String getFullName() {
         return fullName;
     }
+
+    public String getPassportNo() {
+        return passportNo;
+    }
 }
