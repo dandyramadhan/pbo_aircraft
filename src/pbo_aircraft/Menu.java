@@ -174,4 +174,18 @@ public class Menu {
         }
     }
 
+    public static void namaKelompok (){
+        cls();
+        System.out.println("================= Kelompok 2 =================");
+        System.out.println("1. Muhammad Dandy Ramadhan  (202343501314)");
+        System.out.println("2. Muhammad Wijdan Afifi    (202343501315)");
+        System.out.println("3. Nur Syahnita             (202343501301)");
+        System.out.println("4. Jaskia Ferzonata         (202343501295)");
+        System.out.println("5. Rahmawan Elvando         (202343501297)");
+        System.out.println("6. Zoelva Zaid Al Zubair    (202143501121)");
+        System.out.println("==============================================");
+        System.out.println("Tekan ENTER untuk melanjutkan...");
+        sc.nextLine();
+        cls();
+    }
 }
