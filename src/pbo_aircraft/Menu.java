@@ -1,5 +1,6 @@
 package pbo_aircraft;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -23,6 +24,7 @@ public class Menu {
             System.out.print("Pilih menu: ");
             pilih = sc.nextInt();
             sc.nextLine();
+            cls();
 
             switch (pilih) {
                 case 1 -> login();
@@ -161,4 +163,15 @@ public class Menu {
 
         InvoiceDAO.simpan(invoice);
     }
+
+    private static void cls() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Terjadi kesalahan saat membersihkan layar.");
+        }
+    }
+
 }
