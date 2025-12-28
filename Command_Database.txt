@@ -1,0 +1,105 @@
+==== CREATE DATABASE ====
+
+CREATE DATABASE aircraft;
+
+
+
+==== CREATE TABLE ====
+
+CREATE TABLE airport (
+    icao CHAR(4) NOT NULL,
+    airport_name VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    country VARCHAR(50) NOT NULL,
+    distance INT(11) NOT NULL,
+    estimasi_waktu DECIMAL(5,2) NOT NULL,
+    PRIMARY KEY (icao)
+);
+
+
+CREATE TABLE customers (
+    ID VARCHAR(5) NOT NULL,
+    full_name VARCHAR(100),
+    passport_no VARCHAR(20),
+    PRIMARY KEY (ID)
+);
+
+
+
+CREATE TABLE pesawat (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    kategori VARCHAR(100),
+    nama_pesawat VARCHAR(100),
+    kode_registrasi VARCHAR(20),
+    kapasitas INT(11) NOT NULL,
+    jarak_tempuh INT(11),
+    estimasi_waktu DECIMAL(10,1),
+    harga_sewa DECIMAL(15,0) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE invoices (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    customer_id VARCHAR(5),
+    pesawat_id INT(11),
+    origin_icao VARCHAR(10),
+    dest_icao VARCHAR(10),
+    jarak INT(11),
+    estimasi_waktu DECIMAL(5,2),
+    jumlah_penumpang INT(11),
+    total_biaya DECIMAL(15,0),
+    jadwal_berangkat DATETIME,
+
+    PRIMARY KEY (id),
+
+    CONSTRAINT fk_invoice_customer
+        FOREIGN KEY (customer_id) REFERENCES customers(ID),
+
+    CONSTRAINT fk_invoice_pesawat
+        FOREIGN KEY (pesawat_id) REFERENCES pesawat(id),
+
+    CONSTRAINT fk_invoice_origin
+        FOREIGN KEY (origin_icao) REFERENCES airport(icao),
+
+    CONSTRAINT fk_invoice_dest
+        FOREIGN KEY (dest_icao) REFERENCES airport(icao)
+);
+
+
+
+==== INSERT INTO ====
+
+INSERT INTO pesawat (kategori, nama_pesawat, kode_registrasi, kapasitas, jarak_tempuh, estimasi_waktu, harga_sewa) VALUES
+('Light Jet', 'Beechcraft Premier IA', 'PK-SJS', 6, 2500, 3, 40000000),
+('Light Jet', 'HondaJet Elite II', 'N-123HJ', 6, 2800, 3.5, 42000000),
+('Light Jet', 'Cessna Citation CJ3+', 'N-322CJ', 7, 3400, 4, 45000000),
+('Light Jet', 'Embraer Phenom 300E', 'PK-LSD', 7, 3650, 4.5, 50000000),
+('Light Jet', 'Learjet 75', 'VH-LRJ', 7, 3700, 4.5, 55000000),
+
+('Mid-size Jet', 'Learjet 60XR', 'PK-JKW', 8, 4400, 5.5, 75000000),
+('Mid-size Jet', 'Gulfstream G150', 'N-150GA', 8, 5500, 6.5, 82000000),
+('Mid-size Jet', 'Cessna Citation Latitude', 'PK-TNC', 9, 5000, 6, 85000000),
+('Mid-size Jet', 'Hawker 900XP', 'PK-TWN', 9, 5300, 6.5, 80000000),
+('Mid-size Jet', 'Embraer Praetor 500', 'N-500PR', 9, 6100, 7.5, 95000000),
+
+('Heavy Jet', 'Bombardier Challenger 650', 'PK-YGR', 12, 7400, 8.5, 140000000),
+('Heavy Jet', 'Embraer Legacy 650E', 'PK-RJP', 13, 7200, 8, 135000000),
+('Heavy Jet', 'Dassault Falcon 8X', 'F-HCRI', 16, 11900, 13.5, 190000000),
+('Heavy Jet', 'Bombardier Global 6000', 'PK-XRO', 17, 11100, 13, 175000000),
+('Heavy Jet', 'Gulfstream G550', 'PK-GVP', 19, 12500, 14, 180000000);
+
+
+
+INSERT INTO customers VALUES
+('C001', 'Andi Pratama', 'A12345678'),
+('C002', 'Siti Rahmawati', 'B23456789'),
+('C003', 'Muhammad Rizky', 'C34567890'),
+('C004', 'Dinda Ayu Lestari', 'D45678901'),
+('C005', 'Fajar Nugroho', 'E56789012'),
+('C006', 'Nabila Putri', 'F67890123'),
+('C007', 'Ahmad Fauzan', 'G78901234'),
+('C008', 'Putri Amelia', 'H89012345'),
+('C009', 'Raka Wijaya', 'I90123456'),
+('C010', 'Aulia Khairunnisa', 'J01234567');
